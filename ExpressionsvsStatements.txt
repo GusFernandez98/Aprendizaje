@@ -1,0 +1,176 @@
+Expressions vs Statements
+
+*Una expression siempre se convierte (retorna) un valor.
+cualquier parte del codigo que se trasforma en algo.
+
+*Un statement realiza una acción, indican al interprete lo que tiene que hacer
+
+// Expression
+// Retorna algo
+1+1 (esto daria un resultado que es 2)
+Math.pow(2, 3) + 4; (funcion que eleva dos al cubo y despues suma 4) tambien devuelve un resultado
+
+
+// Statement
+// Hace algo
+if /*es un statement, no retorna nada, lo que hace es indicar al interprete*/
+
+if (condicion) {
+	// si la condicion es verdadera (true) ejecuta el codigo
+} else {
+	// si no ejecuta este codigo (si la condicion es falsa)
+}
+
+
+			//Expressions
+
+//Expresion aritméticas = resuelven un valor numerico
+10
+1 + 10;
+2 * 6;
+
+//Expresiones de strings(Cadena de caracteres) = Devuelven una string
+"Hola";
+"Hola" + "Mundo";
+
+//Expresiones logicas = Resuelven un valor booleano, se representa en true o false
+10 > 9;
+true
+11===2;
+false
+
+//Expresiones primarias = se escriben por si misma, y no utilizan ningun operador(signo o simbolo)
+(Es decir yo escribo una expresion sin operador)
+"Hola"; (una string, retorna la misma string)
+"23"
+true;
+this; Referencia al keywords this
+numero; Referencia a la variable numero
+
+//Expresiones de asignacion = Cuando utilizamos el operador [=] se habla de assigment Expression. Esta expresion retorna el valor asignado.
+(Retorna un valor y hace algo, son un mini statement, por eso el nombre assigment expression)
+	a = 1;	// si probamos esto en la consola, vemos que retorna el valor
+	var c = (a = 2);	// Vamos a ver que dentro de la variable c, esta el valor retornado por la expression "a = 2"
+
+// Expresiones con efectos secundarios (side effects) = al ser evaluadas retornan algo, pero a su vez tienen un efecto secundario (incrementar un valor, etc)
+contador++; //retorna el valor de contador e incrementa uno.
+++contador; //Incrementa el valor de contador y retorna el valor.
+(evalua el valor y agrega)
+
+mult *=2; // multiplica mult por dos, asigna ese valor a mult y retorna valor
+
+
+
+				//Statements(HACEN ALGO)
+Son instrucciones que le damos al interprete de JS para que "haga algo", el cual puede ser:
+Crear variable, ejecutar bloque de codigo N veces, ejecutar un bloque de codigo o no segun una condicion, declarar una funcion
+
+	*Declaration Statement = Indican al interprete que declare variable o funcion, se utiliza con keyword {function} {var}
+
+	var prueba; //declaro la variable prueba
+	var gustavo; /declaro la variable gustavo
+
+	function suma (a, b, c) { //declaro funcion de suma
+		//codigo
+	}
+
+	#La fucnion puede ser ambivalente, puede declarar una funcion atraves de una statement o una funcon atraves de una expression!!!
+
+*por regla general lo que podamos pasarle a una funcion (ej:console.log) por argumento era una expression.
+-Y mucha veces pasamos la declaracion de una funcion por argumento, esto sucede porque en JS existen la "function expressions"
+
+*Cuando declaramos funcion el interprete puede interpretarla como un statement o cono una expression, dependiendo el contexto.
+ej: 	
+					//FUNCTION DECLARATION
+					function resta (a, b) {
+						/bloque de codigo
+					}
+
+					//FUNCTION EXPRESSION   (puede no tener un nombre)
+					var resta = function (a, b) {
+						//codigo
+					}
+					array.map (function () {
+						/codigo
+					}
+				#el argumento de la funcion espera una expression
+
+					// Immediately invoked function expression
+					ej:
+						(function() {
+							console.log ("IIFE");
+						}) ();
+
+				*Aca estoy declarando una funcion, pero escribo entre parentesis (cualquier cosa que escriba dentro del parentesis guarda una expression) 
+				otro ejemplo:
+								(function () {
+									return 10
+								}) ();
+								esta funcion se vuelve un 10
+
+
+			//CONDICIONAL STATEMENTS = sirven para controlar el flujo de ejecucion de codigo segun si se cumple o no una condicion.
+			ej:
+				if (condicion) { //condicion puede ser cualquier expression
+					//ejecuta este codigo sin la condicion es true (verdadera)
+				}	else if (condicion2) {
+					 //ejecuta este codigo si la condicion no es true y condicion2 es true
+				}	else {
+					//ejecuta este codigo si la condicon y condicion2 no son true
+				}
+	*No retornan nada, pero si hace algo que es bifulcar el codigo segun la expression (condicion)
+
+
+
+				swicht(valor) {																			*en valor va un variable,
+					case "option1" :																	entonces si la variable tiene el valor de option1 se ejecuta ese bloque de codigo
+					 // se ejecuta si el valor es opcion1;
+					 break; // sale del swicht
+					 case "option2" : 
+					 //se ejecuta si el valor es opcion2;
+					 break;
+					 case "opcion3"
+					 // se ejecuta si el valor es opcion3;
+					break;
+				default:
+					//se ejecuta siempre
+				}
+
+				keyword break corta la ejecucion de ese bloque y pasar a lo que sigue en el codigo 
+
+
+
+			//LOOPS = Bucles.	
+			sirver para ejecutar un bloque de codigo muchas veces 
+
+			while (condicon) {  //condicion es una expression!!
+				//ejecuta este bloque de codigo mientras condicion sea true;
+			}
+
+			for (var i = 1; 1 < 10; i++) {
+				//ejecuta este bloque de codigo 9 veces
+			}
+			(recibe una variable, una condicion de verdad y un paso. ejecuta este bloque de codigo tantas veces para que la variable subiendo ese paso, cumpla la condicion)  
+
+
+			//JUMPS = Saltos. 
+			sirve para hacer saltos en el flujo del codigo
+
+			function () {
+				//bloque de codigo
+				return;		//cuando llega aca, sale de la ejecucion de la funcion y retorna un valor;
+				//bloque de codigo
+			}
+			el keyword return hace que pegue un salto y vuelva hacia atras con un valor, cortando la ejecucion, por ende el bloque de codigo que se encuentra despues de "return" no se ejecuta nunca
+
+
+			for (var i = 1; 1 < 10; i++) {
+				//ejecuta este bloque de codigo N veces;
+				continue; //salta a la siguiente iteracion del bucle;
+				// desde aca no se ejecuta
+			}
+
+			keyword continue cuando se llega ahi pega un salto, asi salteando todo un bloque de codigo que se encuentra debajo de continue hasta llegar al final del bloque.
+			en resumen segun el ejemplo: sigue con el for, pero saltea todo lo que hay por debajo.
+
+			throw new error ("hubo error, se termina la ejecucion") tira un error y corta, por eso es un statement de salto, ya que pega el salto y vuelve a otro lado

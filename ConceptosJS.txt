@@ -1,0 +1,292 @@
+Consola REPL == Read Evaluate Print loop
+Forma de interactuar con el usuario
+read: lee
+evaluate: evaluate
+print: imprime
+loop:comienza de nuevo
+
+*Escribo un comando la consola lo lee, lo evalua (hace algo) lo imprime y vuelve a empezar.
+
+
+
+JAVASCRIPT = Lenguaje de programación 
+(lenguaje formal que nos da una sintaxis, nosotros podemos darle instrucciones a una computadora para que las realice 
+de forma programatica)
+algunos de ellos: PYTHON, C, C++, .NET... cada uno diseñado para proposito especifico
+
+Hay lenguajes: 
+    TIPADOS: cuando declaro una variable, tengo que decir que tipo de valor es y esa variable nunca 
+    va a poder cambiar.
+    NO TIPADOS: la variable puede ir cambiando todo el tiempo sin problema.
+
+*Js es muy flexible, desventaja al ser flexible es que la misma cosa puede estar escrita de forma diferente.
+
+
+        //CONCEPTOS BASICOS//
+
+*Variables = Es una forma de almacenar valor de algo para usar mas tarde
+(Guardar algo en un lugar donde despues lo voy a recuperar de alguna forma)
+*Crear una variable:
+        var <nombre de la variable> = <signo igual para asignarle un valor, el cual va a estar en la derecha>
+        (el nombre de la variable sirve para poder referirnos a ella luego)
+        terminar con punto y coma
+        
+        var firstname = "Gustavo";
+
+        en la variable podemos guardar cualquier tipo de cosa, ej:
+        var hola = "mundo";
+        hola = 15; esto haria que se pise el primer valor (15 reemplazaria a mundo)
+    
+    *Para evitar que una variable se pise, se declara una variable llamada:
+     CONSTANTE [const] 
+     Variable que no se podra cambiar.
+
+    Ej:const PI = 1998
+    (funciona igual que cualquier variable)
+    si yo quiero asignarle un numero nuevo a PI, sale un error.
+
+    Hay palabras reservadas para el lenguaje (las que se pintan) por ej:
+    var
+    let
+    const
+    *Los keyword son palabras especiales que utiliza el lenguaje para indicar algo.
+    No podemos usar las keyword del lenguaje como nombres de variables.
+    (NO HACER NUNCA === var = var)
+
+    //LET = asigna una variable similar a [var], pero como un comportamiento distinto, lo mas notable es que difiere al crear un "nivel de scope"//
+    (Variables que funcionan por scope, se vera cuando aprenda scope)
+
+
+    **TIPOS DE DATOS**
+    Es un atributo de los datos que se indica la clase de datos que se va a manejar. Esto incluye imponer restricciones en los datos,
+    como que valores pueden tomar y que operaciones se pueden realizar.
+    -Los tipos de datos aceptados varian de lenguaje en lenguaje.
+
+*Un lenguaje tiene una cantidad finita de tipos de cosas que podamos escribir o guardar en las variables. (finita porque depende del lenguaje el cual puede tener una mayor o menos cantidad de tipos de datos)
+
+*JS tiene pocos tipos de datos (6)
+        1) STRINGS: son bloques de texto, tambien se le dice cadena de caracteres. (palabras que van entrecomillas, el cual puede ser un numero mientas se encuentre ahi "")
+
+                    var dog = "Lucy";
+
+        2)NUMBERS: Js agrupa todos los numeros en un tipo de dato (numeros reales, entero, negativo, etc) no se envuelven en comillas. js tiene una limitacion en el tamaño
+        pero es extraño llegar a esa cantidad.
+
+                    var num = 28;
+                    var real = 13.2;
+                    var neg = -12;
+
+        3)BOOLEAN: puede tener dos valores posibles que son TRUE(verdadero) o FALSE(falso), las cuales son palabras reservadas.
+
+                    var quieroAprenderjs = true;
+                    var nomegusta = false;
+
+        4)NULL y UNDEFINED: null se refiere a nada ( ni un 0, ni una palabra). Undefined se refiere a que no esta definido.
+
+                    var age 
+                    age // Undefined
+                    var age = null 
+
+
+              OPERADORES (vamos a poder realizar operaciones en js a traves de ellos)
+        *Operadores matematicos: +(suma), -(resta), *(multiplicacion), /(division), =(operacion de asignacion)
+                    1 + 1 = 2
+                    2 * 2 = 4
+                    3 - 3 = 0
+                    4 / 4 = 1
+
+        % (MODULO) devuelve el resto de la division entera
+
+        -Operacion matematica con una string
+        ej:        "2" * "2"
+                    4
+        Hasta ahi todo normal, pero si yo hago:
+
+                   "2" + "2"
+                   "22"
+
+        En este ejemplo me sale "22" entre comillas, lo que sucede es el Casteo de datos (es decir que se cambia el tipo de dato)
+        Js se toma la libertad de convertir tipos de datos para poder resolver lo que el usuario pide.
+        ejemplo:    
+                si quiero sumar string + 1, eso no se puede hacer, por eso js se toma la libertad y lo resuelve de la siguiente forma
+                "2" + 1
+                "21"
+        La logica es que al numero lo vuelve una string. La suma de dos string me devuelve un string concatenado 
+
+        *NaN= NOT AT NUMBER
+
+            
+            //OBJETOS GLOBALES Y MÉTODO//
+        JS tiene una serie de objetos integrados para usar (ya visto objeto: consola y su metodo: log)
+        Otro objeto es [Math], tiene varios metodos.
+
+            * MATH.POW
+            Se puede usar el [pow] en [Math] para devolver un numero elevado a un exponente, tomara dos numeros
+            Ej:
+                Math.pow(2,2) = 4;
+                Math.pow(3,2) = 9;
+                Math.pow(3,3) =27;
+
+            *Metodos que redondean los numeros de [Math]
+            1_ Maht.round: redondeara un numero al numero entero mas cercano.
+            2_ Math.floor: siempre redondeara un numero entero mas cercano hacia abajo.
+            3_ Math.ceil: Siempre se redondeara al numero entero mas cercano hacia arriba
+
+            ejemplos:
+                Math.round(6.5) = 7;
+                Math.round(6.45) = 6;
+                Math.floor(6.999) = 6;
+                Math.ceil(6.001) = 7;
+
+            * .LENGTH  
+            El tipo de dato "string" tiene un metodo incorporado llamado [.length] Cualquier cadena que llamemos a esto devolvera la cantidad de caracteres
+            que contenga la cadena.
+            Ej: 
+                    var nombreGato = "Felix"
+                    console.log(nombreGato.length); 
+                    5       // resultado. ( felix contiene 5 caracteres, letras)
+
+
+
+            * FUNCIONES             <function nombre(argumento)>
+        Son tipos particulares de objetos llamados "callable objects (objetos invocables)", por lo que tienen la misma propiedad que cualquier objetos.
+        
+        Una funcion agrupa codigo , lo guarda en un lugar y uno despues lo puede ejecutar.
+        Evita escribir codigo demas o repetir codigo que hagan lo mismo.
+        Funcion que ya viene con JS:
+                            console.log() = recibe un argumento y lo imprime 
+
+        
+        * Forma de escribir funciones:
+
+        1)          function miFuncion() {
+                        //codigo
+                    }
+        Comienza con "function", un espacio, nombre de la función y entreparentesis van los argumentos que recibe 
+
+        2)          const otraFuncion = function () {
+                        //codigo
+                    }
+        Esta forma es declarando una variable. Diferencia con la anterior es que no tiene nombre, pero la estoy guardando dentro de una variable y ya sabria como acceder.
+
+        3) Se llama arrow function:         
+                                const yOtra = () => {
+                                   //codigo             
+        
+                                }
+
+Ejemplo: function presentar (nombre, edad) {
+        console.log ("Hola mi nombre es " + nombre);
+        console.log ("tengo " + edad " años. ");
+        }
+        *Con eso ya se activa la funcion, ahora paso a completar con:
+
+        presentar( "Gustavo" , 24 );
+        // Hola mi nombre es Gustavo
+        // Tengo 24 años. 
+        *Esto va a evitar escribir tanto codigo, solo se resume con poner presentar + los datos.
+
+        *EN RESUMEN: sirven para agrupar codigo que voy a usar muchas veces. 
+
+    La funcion puede tener o no parametros
+        function saludo (){
+            console.log("Hola, espero que tenga un buen dia");
+            console.log("happy :)");
+        }   
+    * lo invoco con: saludo()
+
+
+    * ARGUMENTOS
+cuando declaro un argumento entreparentesis, es como si hubiera declarado una variable ahi adentro.                 
+
+Scope = son como areas donde algunas variables tienen sentido y otras no.
+ej: 
+        var nombre = Gustavo
+
+        function saluda(nombre); {
+            console.log("Hola " + nombre)
+        }
+    // saluda("Luis")
+    resultado : Hola Luis.
+
+Todo lo que esta dentro de las llaves {} se conoce como un scope nuevo, por eso todas las variables definidas ahi adentro no se pueden acceder de afuera.
+
+si yo hago el mismo ejemplo sin argumento:
+
+            var nombre = "Gustavo";
+
+            function saluda() {
+                console.log("hola" + nombre);
+            }
+        // saluda()
+        resultado: Hola Gustavo
+*Lo que hizo el interprete es buscar la variable nombre afuera, ya que dentro de las llaves no tenia valor. Prioriza buscar en otra scope antes de tirar error, por eso el
+resultado obtenido en ese ejemplo.      
+
+
+// RESUMEN EN GENERAL
+
+*FUNCION: nos permite ejecutar codigo cuantas veces quiera.
+lo que este dentro de las llaves se va a ejecutar cuando invoque la funcion.
+
+Invocar una funcion: nombre de la funcion y parentesis.
+ej saluda()
+
+*Las funciones pueden tener argumentos, quedando asi: FUNCTION NOMBRE(ARGUMENTO)
+son como variables que declaramos dentro de la funcion, que toma un valor cuando yo invoque la funcion
+
+*console.log() es una funcion que recibe un argumento y lo que hace es imprimir por consola lo que recibio por argumento
+*Alert sale un cartel el pagina 
+*Prompt cartel donde se puede poner un numero o string, te lo devuelve
+*Math: son todas las funciones matematicas.
+
+
+        *FUNCIONES RETURN
+Para retornar un valor se tiene que usar <RETURN>
+*Todo el codigo que esta por debajo de return no se va funcionar, no lo lee nunca.
+
+        *CONTROL DE FLUJO
+Nos permite agregar logica al codigo 
+ejemplo:
+        function puedeManejar(edad){
+            if (edad > 18) {
+                return true;
+           }
+            return false;
+        }
+
+Condicional: instrucciones que se pueden ejecutar o no en función del valor de una condición. expresiones que se convierten en verdadero o falso
+se escribe:
+            if (una condicion) {
+                el codigo que este entre las llaves se va a ejecutar si la condicion es true.
+            }
+if seria con el si de nuestro castellano
+else seria sino. si no pasa eso (refieriendose al if) ejecuta este otro codigo.
+EJEMPLO:
+            edad = 18
+            if (edad < 12){
+                console.log("sos mayor de edad");
+            } else {
+                console.log("sos menor de edad");
+            }
+            // resultado: sos menor de edad 
+        
+            
+        RESUMEN DE LOS PROBLEMAS DEL HOMEWORK1
+
+    -para saber si un numero es menor = numero < numero (el numero de la izquierda seria el menor, por la posicion del signo)
+
+    -si un numero es mayor = numero > numero (el numero de la izquierda es el mayor por la posicion del signo)
+
+    -Para obtener resto se usa "%" modulo
+
+    -para saber si un numero es par = (numero % 2 === 0)        metodo para numero par.
+
+    - para saber si un numero es impar = (numero % 2 === 1)         el metodo para numero impar.
+
+    -para saber si un numero es positivo = (numero > 0)
+
+    -para saber si un numero es negativo = (numero < 0)
+
+
+****ESTUDIAR****
