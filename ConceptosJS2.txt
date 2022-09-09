@@ -1,0 +1,163 @@
+            ===> VERACIDAD <=== 
+*Cuando se usa una declaracion "if" u otra declaracion que espera un valor booleano, y la expresion dada no es un valor booleano, Javascript hara algo llamado 
+"coercion de tipo" y transformara lo que se le entregue a un valor booleano. 
+    -Esto se conoce como "truthy" y "falsey". Cada tipo de datos tiene una veracidad.
+
+            *Datos que son forzados a verdadero "true"
+            -true
+            -1
+            -" " (Es una string ya que espacio cuenta como eso)
+            -[] una array
+            -{} un objeto 
+            -function (){}
+
+            *Datos que son forzados a falso "false"
+            -false
+            -0
+            -Undefined
+            -null
+            -"" (es una string vacia)
+
+en resumen:
+        // Todos los numero son true, excepto el 0 para JS.
+        // Todas las string son true, excepto string vacio ("")
+
+        ===> OPERADORES DE COMPARACION <===
+        * >
+        * <
+        * >=
+        * <=
+        * ===
+        * !==
+El "triple igual" comparará todo sobre los dos elementos, incluido el tipo y devolvera si son exactamente iguales o no.
+el "doble igual" compara solo dos elementos, no tendra en cuenta sus tipos (1 == "1" // verdadero) se considera MALA PRACTICA.          (compara solo el valor)
+***SIEMPRE USAR EL "TRIPLE IGUAL" (===)
+
+
+    ===>    *OPERADORES DE NEGACION: es el "NOT" ! (el signo de exclamacion) pregunta lo contrario de la expresion
+
+    -"no es igual" !==, esto devolvera verdadero si los articulos no son iguales entre si de alguna manera, al igual que el triple igual tienen en comun el tipo de dato.
+        1 !== 1;        //false
+        1 !== "1";      //true
+
+
+    ===>    *OPERADORES LOGICOS:  (son como operadores matematicos pero para tipos de datos booleanos)
+    los que se van a usar mayormente
+    *AND (en castellano: y)         // en Js:   &&
+    *OR (en castellano: o)          // en Js:   ||    
+    *NOT (en castellano: no)        // en Js:   !
+
+AND es true solo si los dos operadores son true, el resto falso.
+OR es falso si los dos operadores son falsos, el resto es true (lo contrario a and)
+NOT da vuelta el significado (ej: true !p false)
+
+
+p           | p             | p && q        | p || q            | !p                                *Tabla de verdad.. (sale en el video)
+            |               |               |                   |
+true        |true           |true           |true               |false
+true        |false          |false          |true               |false
+false       |true           |false          |true               |true 
+false       |false          |false          |false              |true 
+
+
+            ===> Bucles <===
+DRY Code: Don't Repeat Yourself. que seria "No te repitas"
+
+con mis palabras: la funcion del bucle es evitar repetir y repetir codigo
+
+==> *BUCLE FOR // Nos va ayudar a repetir un bloque de codigo muchas veces 
+
+//for(){} dentro del parentesis se necesitan tres cosas.
+Partes de ese parentesis: 
+                    1)Variable que va a utilizar para contar la cantidad de repeticiones que va haciendo
+                    2)Una expresion condicional. (condicion de frenado, cuando queres que deje de ejecutarse)
+                    3)tenemos "el paso" incrementaremos la variable (valor)
+
+su anatomia ====>       for (var i = 0              ; i <= 100              ; i++) {
+                            declaracion de variable | expresion condicional | incrementacion de la variable.
+                         //bloque de codigo
+                         }    
+*Las tres declaraciones estan separadas por punto y coma
+
+ej: imprimir del 1 al 100
+for (var i = 1; 1 < 100; i++) {
+console.log(i)                          // el valor que va cambiando es "i"
+}
+
+convertido en una funcion:          function imprimir1aN(n){                                            
+                                     for (var i = 1; 1 < n; i++) {
+                                     console.log(i)                          
+                                    }   
+
+Operador ++: Establece el valor de la variable a su valor actual mas uno.
+
+*Bucle anidado //es aquel que está dentro de otro
+ej:   
+// n: filas
+// m: columnas                //Las matrices se describen como "objetos tipo lista"
+                             // son las filas y columnas,
+ej: 
+(j)  0   1   2   3
+(i)
+ 0   1   2   3   4
+ 1   5   6   7   8  
+ 2   9   1   2   3   
+lo que se refiere matriz son los numeros que estan en la fila y columna.
+ 
+    function matriz(n, m) {                                                                         
+        for(var i = 0; i <=n; i++) {
+            for(var j = 0; j < m; j++) {
+                console.log(i + "," + j);
+            }
+        }                                                                                        
+    }
+matriz(2, 3)
+
+Resultado:
+0,0
+0,1
+0,2
+0,3
+1,0
+1,2
+1,3
+2,0
+2,1
+2,2
+2,3
+
+
+===>*BUCLE WHILE
+
+while (una condicion) {
+    //bloque de codigo
+}
+
+*Mientras la condicion sea verdadera, el bloque de codigo se va a repetir indefinidas veces
+
+para ejecutarse tiene que quedar asi:                                               // similar al for, pero no tiene los datos en los parentesis, eso se debe a que es más primitivo.
+                                                                                    (Ctrl+C: para cortar ejecucion)
+var i = 0;
+while (i < 100) {
+    console.log(i);
+    i++;
+}
+
+function matiz(n, m) {
+    var j = 0;
+    var i = 0;
+    while (i < n) {
+        while (j < m) {
+            console.log(i, j)
+            j++;
+        }
+        j = 0;
+        i++
+    }
+
+}
+        
+DIFERENCIA FOR // WHILE
+*En el for uno ya sabe la condicion de parada.
+*Cuando no se sabe la condicion de para se debe utilizar el while.
+                                                      
