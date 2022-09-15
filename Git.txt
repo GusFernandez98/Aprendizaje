@@ -1,0 +1,123 @@
+Uso de git
+-Historial
+-Almacenar codigo
+-Trabajar en equipo
+-Cuando se introdujo un error
+
+git bash (Bourne-Again Shell)
+Terminal que permitira ejecutar lo comandos de git, además emulara los comandos de linux y mac.
+*No utilizar terminal de windows
+
+Comandos basicos
+1) ls: nos permite listar los archivos y carpertas que se encuentren dentro de un determinado directorio
+2) pwd: para saber en que carpeta o directorio estoy.
+3)cd: para movernos entre nuestras carpetas (tab rellena el nombre)
+4)cd .. :para salirme de la carpeta, volver una carpeta atras
+ 
+ Crear carpeta desde la terminal
+*mkdir miweb
+
+Inicializacion de repositorio
+git init       .git(directorio oculto, para mostrarlo es con ls -a)
+para ingresar a esta cd .git
+ls -a aparecen los detalles de implementacion, eso donde se almacenan las distintas versiones de nuestro codigo
+la carpeta .git es ignorada por los repositorios que vamos a crear, no pasa a un servidor central
+
+Flujos de trabajo a seguir
+computer/ Stage    / Commit     /server
+        / git add / git commit / git push
+
+-git status: nos muestra el estado actual de nuestro repositorio
+(untacked:archivos cuales git no sigue)
+
+-git add + argumento: podemos colocar el nombre del archivo tal cual, alguna expresion regular "*.txt" y asi agregar todos los
+archivos que tengan una extension txt y el "." que agregara absolutamente todos los archivos (mala practica, incluir archivos que
+queriamos)
+
+los archivos que se encuentren en verde, estan en la etapa de stage, es decir listo para el commit
+
+si modificamos el archivo, nos va a indicar que hay un archivo que no se encuentra en la etapa de stage, que seria el modificado
+solo hay que reemplazarlo con git add
+
+
+*Despues de todo eso estamos listo para el commit
+-git commit -m "Commit inicial (tenemos que agregar algo que haga sentido)"
+
+*Para eliminar un archivo de nuestra carpeta main
+1)ls para enlistar los archivos
+2)rm "nombre del archivo"
+git status y nos aparece en letras rojas el archivo borrado, cambio que no se encuentra en la etapa de stage
+nos sale en letra verde la accion de eliminar el archivo, asi encontrandose en etapa stage
+*git tiene un comando que permite ahorrarnos eso pasos
+-git rm "nombre del archivo"
+
+*para sacar un cambio que nosotros pasemos a la etapa de stage con el comando: git restore --stage <archivo> (sale en la consola despues de un status)
+
+*si yo quisiera descartar los cambios
+git restore <archivo> asi pudiendo recuperar el archivo eliminado
+
+*Para mover po cambiar nombre del archivo
+mv(comando para poder mover archivos) hay que indicar cual es el origen y despues el destino que va a tener, quedando asi:
+mv archivo1.txt archivo.txt
+-luego vemos con ls si se realizo con exito el cambio (con esto git dejara de seguir el archivo, asi que hay que hacer add de vuelta)
+* git add <nombre de archivo> <archivo>
+sale el mensaje de rename(cambio de nombre)
+
+*herramienta para nombrar y agregar a stage los cambios (ahorrando unos pasos del anterior)
+git mv <nombre del archivo> <nuevo nombre del archivo>
+
+
+*Ignorar archivos 
+esto es para los archivos de configuracion que lleguemos a tener, que solo son para nuestra maquina
+en VCO debemos crear un nuevo archivo con el nombre de <.gitignore> ahi especificar los archivos y rutas que quiero ignorar, que no vayan a mi repositorio
+tambien pueden ser carpetas, siempre que las mencionemos en ese archivo de VCO.
+-git add
+-git commit
+
+*Un mejor status
+git status -s
+M:modificado
+??:Archivo nuevo
+una vez agregados con git add salen en verde y los <?? pasan a ser una A>
+
+*Visualizar los cambios 
+git diff: nos mostraria en la consola los cambios que estamos dispuestos a agregar 
+git diff --staged podemos ver los cambios que se encuentran en la etapa de staged
+
+*Revisar todo el historial de nuestro repositorio
+git log (nos mostrara mucha informacion ej: nombre de la persona que realizo cierto commmit, email y mjs commit)
+git log --oneline nos mostrara el historial con un pequeño hass que sirve con identificador de commit (numero unico con el que se va a identificar nuestro commit dentro del registro que tenemos en git)
+
+
+*Branches (ramas en git)
+Es para cuando trabajan varios programadores en un mismo archivo 
+nosotros crearemos una rama a la cual le vamos agregar commits, es independiente de la rama principal. una vez terminado podemos solicitar un merch.
+antes de crear una rama, debemos verificar en que rama me encuentro con:
+git branch <saldra la rama main>
+para crear una rama:
+git checkout -b <nombre de la rama>(algunas empresas prefieren usar una nomeclatura de features/nombre-de-la-funcionalidad 
+				     otras prefieren colocar el numero de ticket que desean arreglar SS-4515) esto es para saber a futuro
+la consola mostrara que nos cambiamos de rama.
+
+cat <archivo> nos mostrara el contenido de nuestro archivo
+
+volvemos a la rama principal y ejecutamos el comando cat, veremos no sale lo de la ramaB
+para poder trar los cambios de ramab a la rama principal se debe escribir el comando: (estando en la rama principal)
+git merge <nombre de la rama que queramos traer>
+veremos que trajo el archivo con su cambios incluidos 
+
+*Subir todo el archivo trabajado a la nube con github
+git remove add origin <url>
+
+(git remove sirve para indicar si voy a tener un servidor remoto para subir los cambios)
+(add origin le indico de donde tengo que ir a obtener mi codigo y donde tenemos que subir los cambios) 
+
+*Git push es el comando para que nosotros podamos subir los cambios a github respecto a la rama que trabajamos 
+la rama de main no se encuentra en github por eso el comando sigue con <-u origin main> creando en github dicha rama
+	Recordatorio: en mi caso es master, no main.
+
+**RESUMEN: modificar archivo, git add, git commit y git push
+
+crear la otra rama en el repositorio git push -u origin ramab
+
+
