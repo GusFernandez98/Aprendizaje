@@ -160,4 +160,11 @@ function matiz(n, m) {
 DIFERENCIA FOR // WHILE
 *En el for uno ya sabe la condicion de parada.
 *Cuando no se sabe la condicion de para se debe utilizar el while.
-                                                      
+
+
+ HOMEWORKII
+ ·Saber si un numero es divisible:  "numero" % 3 === 0 (Es para saber si numero es divisible por 3)
+
+ ·Un numero primo es divisible por si mismo y por 1.
+ 0 y 1 no son considerados primos
+                                                  

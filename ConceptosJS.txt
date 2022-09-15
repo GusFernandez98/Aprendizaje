@@ -24,21 +24,21 @@ Hay lenguajes:
 
         //CONCEPTOS BASICOS//
 
-*Variables = Es una forma de almacenar valor de algo para usar mas tarde
+====> *Variables = Es una forma de almacenar valor de algo para usar mas tarde
 (Guardar algo en un lugar donde despues lo voy a recuperar de alguna forma)
 *Crear una variable:
         var <nombre de la variable> = <signo igual para asignarle un valor, el cual va a estar en la derecha>
         (el nombre de la variable sirve para poder referirnos a ella luego)
         terminar con punto y coma
         
-        var firstname = "Gustavo";
+        ====>   var firstname = "Gustavo";  <====
 
         en la variable podemos guardar cualquier tipo de cosa, ej:
         var hola = "mundo";
         hola = 15; esto haria que se pise el primer valor (15 reemplazaria a mundo)
     
     *Para evitar que una variable se pise, se declara una variable llamada:
-     CONSTANTE [const] 
+    ===> *CONSTANTE [const] 
      Variable que no se podra cambiar.
 
     Ej:const PI = 1998
@@ -120,7 +120,7 @@ Hay lenguajes:
         JS tiene una serie de objetos integrados para usar (ya visto objeto: consola y su metodo: log)
         Otro objeto es [Math], tiene varios metodos.
 
-            * MATH.POW
+        ===> *MATH.POW
             Se puede usar el [pow] en [Math] para devolver un numero elevado a un exponente, tomara dos numeros
             Ej:
                 Math.pow(2,2) = 4;
@@ -138,7 +138,7 @@ Hay lenguajes:
                 Math.floor(6.999) = 6;
                 Math.ceil(6.001) = 7;
 
-            * .LENGTH  
+        ===> *.LENGTH  
             El tipo de dato "string" tiene un metodo incorporado llamado [.length] Cualquier cadena que llamemos a esto devolvera la cantidad de caracteres
             que contenga la cadena.
             Ej: 
@@ -148,7 +148,7 @@ Hay lenguajes:
 
 
 
-            * FUNCIONES             <function nombre(argumento)>
+        ===> *FUNCIONES             <function nombre(argumento)>
         Son tipos particulares de objetos llamados "callable objects (objetos invocables)", por lo que tienen la misma propiedad que cualquier objetos.
         
         Una funcion agrupa codigo , lo guarda en un lugar y uno despues lo puede ejecutar.
@@ -184,7 +184,7 @@ Ejemplo: function presentar (nombre, edad) {
         presentar( "Gustavo" , 24 );
         // Hola mi nombre es Gustavo
         // Tengo 24 años. 
-        *Esto va a evitar escribir tanto codigo, solo se resume con poner presentar + los datos.
+        *Esto va a evitar escribir tanto codigo, solo se resume con poner presentar + los datos.        (Esto seria INVOCAR LA FUNCION)
 
         *EN RESUMEN: sirven para agrupar codigo que voy a usar muchas veces. 
 
@@ -193,7 +193,7 @@ Ejemplo: function presentar (nombre, edad) {
             console.log("Hola, espero que tenga un buen dia");
             console.log("happy :)");
         }   
-    * lo invoco con: saludo()
+   ===> * lo invoco con: saludo()
 
 
     * ARGUMENTOS
@@ -243,7 +243,7 @@ son como variables que declaramos dentro de la funcion, que toma un valor cuando
 
         *FUNCIONES RETURN
 Para retornar un valor se tiene que usar <RETURN>
-*Todo el codigo que esta por debajo de return no se va funcionar, no lo lee nunca.
+*Todo el codigo que esta por debajo de return no va funcionar, no lo lee nunca.
 
         *CONTROL DE FLUJO
 Nos permite agregar logica al codigo 
