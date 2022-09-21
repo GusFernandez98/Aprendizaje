@@ -1,0 +1,108 @@
+         ---> ARRAY (arreglos)
+·Son una lista de elementos
+·Los elementos pueden ser los tipos de datos ya vistos (string, número, booleanos, null y undefined)
+
+¿como se definen? Usando los bracket [] tambien llamados corchetes. Los elementos van separados por comas
+ej:
+    var array = []; <--- ese es el signo ya mencionado
+
+*Pueden ser una array vacia o con elementos.
+*Pueden aceptar todos los tipos de datos, inclusive puede tener hasta una funcion, tambien otra array dentro.
+
+quedando asi ---> var array = [1, 2, "hola", null, undefined, function(){console.log("hola")}, 1, 2, [3, 4]]
+cuenta con: numero, string, una funcion y otra array.
+
+       
+        *Acceder a los elementos
+Son una coleccion de elementos que se puede acceder a traves de un indice.
+ej:
+    var array = ["Luis", "Gustavo", "Fernandez", function(){console.log("Hola")}]
+                   /0        /1        /2                   /3
+El primero elementos es "0" y asi sigue sucesivamente.
+Comando para acceder:
+    *array[0];       // asi accederia al primer elemento (en este caso es "luis")
+    array[1];        // y asi al segundo elemento (en este caso es "Gustavo")
+    array[3] ();      // Tercer elemento que es la funcion y el parentesis es para invocar la funcion que en este caso imprime un "hola"
+
+ejemplo de la clase:    array[6][0]         //El segundo corchete es para buscar el elemento del array, que esta adentro de otra array.
+·Las string "secretamente" son como un array de caracteres
+
+----> .length
+similar a las string, aca se utiliza para saber cuantos elementos tiene la array
+Se escribe:
+            *array.length
+*Para acceder a la ultima posicion del arreglo se escribe:      array[array.length -1] Hay que poner menos unos ya que se cuenta desde "0" 
+
+
+            *ASIGNAR VALOR A UNA ARRAY(arreglo)
+ 
+ *Cuando agregamos valor asi:     //var array = [1, 2, 3,"Hola"] ---->Se llama "Forma literal" ya que literalmente estoy escribiendo los elementos de la array
+
+*Teniendo un array vacio ---> [], puedo agregarle valor asi:
+ej:     var lista = [];
+        /undefined
+        lista[0]
+        /undefined
+        lista[0] = "Primer elemento"            // tal como se ve el ejemplo se agrega el elemento con el operador de asignacion(=) {Funciona casi igual a una variable}
+Si yo coloco un elemento salteando posiciones, cuando ponga lista me va a salir <6 empty items> quiere decir que deje 6 elementos undefined (sin definir)
+
+
+En resumen:
+            var array = []                  // asi se declara una array vacia
+para asignar valor con "="
+            array[0] = "Gus"               //Asi quedaria agregado el elemento al indice 0
+            array[3] = "Fer"               // ["Gus", undefined, undefined, "Fer"]  --->    Es vez de undefined, va a salir <2empty items>
+
+
+
+        *OTRA FORMA DE ASIGNAR VALOR: utilizando funciones nativas 
+.push() --->Recibe un argumento y lo que hace es ponerlo en la ultima parte libre de la array.                                                //agrega
+
+        var lista = []
+        lista.push(1)
+        //1
+        lista.push(2)
+        //2
+        lista.push("Gus")
+        //"Gus"
+ahora si pongo lista me van a salir los elemento colocados con el push, quedando asi: listado[1, 2, "Gus"].
+
+*En resumen: Es una funcion nativa del array que permite colocar elementos al final.
+
+.pop() --->Otra funcion, la cual saca el ultimo elemento de la array                                                                        //elimina
+
+·Unshift ---> es exactamente como el push, pero opera en el primer elemento.
+coloca un nuevo elemento en la primer posicion del array.
+
+·shift ---> este es como el .pop, pero con el primer elemento.
+Elimina el primer elemento del array
+
+
+*RESUMEN:
+var lista = [1, 2, 3, 4];
+se puede acceder: lista[0] ---> //1
+-tambien puedo sumar, multiplicar... lista[1] * 2  // estaria por multiplicar el "2"
+-se puede agregar a una variable ---> var cuatro = lista[3]      // cuatro = 4 
+-si uso el pop() --->lista.pop() saca el ultimo elemento        // lista[1, 2, 3] el cuatro fue borrado por el pop.
+
+
+        *RECORRIENDO UN ARRAY
+Ej:
+    var lista = [1, 2, 3, 4, 5];
+    for(var = i; i < lista.length; i++){                        // La I para a ser el indice, reemplazando la forma de contar : 0 1 2 3 4. Por eso va lista[i]
+        console.log(lista[i])
+    }
+    1
+    2
+    3
+    4
+    5
+
+Tambien se puede hacer con un while
+Ej:
+    while(lista.length > 0){
+        console.log(lista.pop());                               //Con esto hago que se eliminen los elementos, de ese modo "lista" queda vacia.
+    }
+
+
+
