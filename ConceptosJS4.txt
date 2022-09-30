@@ -1,0 +1,131 @@
+        ---> OBJETOS
+* Es una coleccion de propiedades.
+* propiedad: es una asociacion entre un nombre (o clave) y un valor.
+
+* Nombre y valor ---> "KEY VALUE"   ·key = nombre;   ·value = valor(es el que queremos guardar en la key).
+* Se puede acceder al valor a traves de la key.
+* Aceptan todos los tipos de datos ya vistos.
+
+·Dato a tener en cuenta:
+Array también es un sistema de keyvalue; las key son numericas y estan ordenadas.
+--> El indice seria la key
+--> El elemento seria el value 
+
+Js esta diseñado en un paradigma basado en objetos, casi todo el JS son objetos.
+
+
+            ¿COMO SE ESCRIBE UN OBJETO?
+De forma literal:
+
+        var objeto = {
+            propiedad1: valor1,
+            propiedadN: valor2,
+        }
+
+1)Se abre llaves.   2) se escribe el nombre de la propiedad, van dos puntos y el valor de la propiedad. La coma "," es para separar de la siguiente propiedad.
+Esto serian los pasos sucesivamente con la cantidad de propiedades que uno quiera.
+Ej:
+    gus = {
+        nombre: "Gustavo",
+        apellido: "Fernández",
+        edad: 24,
+        saludar: function() {                        *Puede ser una function        // lenguaje tecnico, cuando una propiedad sea una funcion se le va a decir "metodo" (saludar en un metodo del objeto gus)
+            console.log("Hola, Gustavo");
+        }
+        hobbies: ["Crossfit" , "futbol"],            *Puede ser un array.
+    }
+
+>El orden de las propiedades no importa, ya que se acceden a traves de un nombre "KEY"
+>Para concatenar: gus["nombre"] + Luis["nombre"]
+>Para acceder al primer caracter: gus["nombre"][0] ---> Me daria la letra "G" de la propiedad nombre(ya que dicha propiedad en el ejemplo contiene "Gustavo")
+
+
+    ---> ACCEDIENDO A LAS PROPIEDADES 
+*Hay dos formas:
+        
+        1)BRACKET NOTATION (notacion de corchetes) es similar a los array.
+        Se escribe el corchete y adentro el nombre de la propiedad ---> ["nombre de la propiedad"]
+        dato: las propiedades son string.
+        queda asi:  
+
+           ---> gus["edad"]         * asi accederia a la propiedad edad
+
+        2)DOT NOTATION: se accede a la propiedad escribiendo un punto "."           // es literal, tengo que poner el nombre de la propiedad tal cual.
+        queda asi: 
+
+          ---> gus.nombre           * de esa forma ya se accede a la propiedad
+               gus.edad
+        La ventaja de esta forma es ser facil de escribir.
+
+-Se va a usar con frecuencia "dot notation" ya que es mas facil. la "bracket notation" se va a necesitar cuando haya que recorrer un objeto
+
+
+    ---> ASIGNANDO VALORES
+
+    1) gus.nuevaPropiedad = 1;
+    2)gus["otraPropiedad"] = 2;
+
+*Seria como el mismo de acceder, con dot notation que seria el punto "." y bracket notation que serian los brackets "[]"
+
+
+    ---> ELIMINAR UNA PROPIEDAD
+*Se utiliza el keyword "delete"        --->delete gus.edad (Esto hace que se borre la propiedad edad del objeto)
+
+
+    ---> This (keyword) : Hace referencia al objeto de donde esta invocando el metodo ( sirve para un metodo, osea una funcion)
+
+Me sirve para no estar haciendo doble cambio, ya que eso puede generar un error y aparte escribo menos codigo
+(lenguaje tecnico, cuando una propiedad sea una funcion se le va a decir "metodo")
+EJ:
+        var persona = {
+            nombre: "Luis",
+            saludar: function() {
+                console.log("Hola, " + this.nombre);
+            }
+        }
+>Si yo quiero modificar nombre ----> persona.nombre = "Gustavo" ---> con eso cambio el valor de la propiedad nombre y con this en el metodo no hace falta modificar mas...
+> Aquí this esta haciendo referencia al objeto persona
+>Realizo el cambio en un lugar y ya me sirve para todos, esto se debe a que estoy haciendo referencia al mismo objeto donde lo estoy invocando. 
+
+Ej:
+    function saludar() {
+        console.log("Hola, " + this.nombre);
+    }
+
+var luis = {
+    nombre: "Luis",
+    saludar: saludar,
+}
+
+var antonio = {
+    nombre: "Antonio",
+    saludar: saludar,
+}
+
+> para invocar cada funcion solo hace falta poner el nombre del objeto y la funcion. ---> luis.saludar(): Hola, Luis.         antonio.saludar(): Hola, Antonio.     
+
+// Objeto global ---> todas variables que defino en JS son propiedades del objeto global
+
+---> Compartir metodos
+        function getEdad() {                           
+            return this.edad * 2;
+        }
+
+        var objeto1 = {
+            edad: 32,
+            getEdad: getEdad,           // con esto ya invoco el metodo en el objeto.
+        }
+
+        var objeto2 = {
+            edad: 24,
+            getEdad,                   //JS permite hacer esto, asume que si solo pongo un nombre hay una funcion que se llama igual y quiero ponerla bajo la propiedad getEdad.
+        }
+// para invocar ---> objeto1.getEdad()   (nombre del objeto "punto" nombre del metodo)
+// Para entender: el this en este ejemplo se "trasforma" en objeto1
+
+*Con esto me ahorro de estar escribiendo la funcion dentro de cada objeto, osea que evitaria esto:
+var objeto1 = {
+    edad: 32,
+    getEdad: function getEdad() {                           
+            return this.edad * 2;
+}
