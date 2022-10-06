@@ -1,0 +1,149 @@
+    ---> First Class Functions  
+>Js es un lenguaje que trata a la funciones como first class 
+>Esto significa que las funciones se pueden pasar como argumentos a otras funciones, retornarlas como resultado de una función, y guardarlas en variables u
+otras estructuras de datos.
+
+*Cuando pasamos una funcion como argumento a otra funcion, recibe el nombre ---> CALLBACK(cb)
+Ej:
+        function decirHolaAlUsuario(usuario) {
+            return "Hola " + usuario + "!";
+        }
+
+        function decirAdiosAlUsuario(usuario) {
+            return "Adios" + usuario + "!";
+        }
+
+        function crearSaludo(usuario, cb) {             //recibe como parametro usuario y un callback, que seria una funcion.
+            return cb(usuario);
+        }
+
+·crearSaludo("Gus", decirHolaAlUsuario); --> "Hola Gus!"            //Esta es la primer funcion definida arriba.   
+·crearSaludo("Gus", decirAdiosAlUsuario); --> "Adios Gus!"          //Segunda funcion definida arriba.
+
+>Si yo paso la funcion invocada, que seria asi -->crearSaludo("Gus", decirHolaAlUsuario()), me va a tirar un error, porque se va a convertir en lo que 
+devuelve la funcion "decirHolaAlUsuario".
+Equivale a undefined, ya que la funcion decirHolaAlUsuario() retorna --> Hola undefined!
+>Por eso importante pasar la funcion, osea su nombre, sin invocar --->crearSaludo("Gus", decirHolaAlUsuario). Debido a esto puedo tambien pasar una funcion de este modo:
+("Gus", function(argumento){console.log(argumento)});
+
+Ejemplos:
+        function saludar(parametro) {
+            return "Hola " + parametro;
+        }
+        function crearSaludo(usuario, cb) {         //cb, no es necesario ponerlo asi... puede llamarse como uno quiera.
+            return cb(usuario)                  ---> Esto retorna la funcion invocada con el usuario.
+        }
+
+    // crearSaludo("Gus", saludar)   
+
+*Todo eso puede equivaler a esto ---> crearSaludo(usuario, function saludar(parametro){
+                                        return "Hola " + parametro;
+                                      });     
+                            
+
+--->for.Each(bucle for integrado en cada array)
+>Toma un callback como su único argumento, e itera sobre cada elemento de la matriz y llama al callback en él.
+>Puede tomar dos argumentos: 1)El elemento en si.           2)el inidice(este argumento es opcional)
+Ej:
+
+        var alumnos = ["Mati", "Leo", "tincho", "Emi", "Jimmy"]
+
+*Asi seria sin callback:
+
+        for(i = 0; i < alumnos.length; i++){
+            console.log(alumnos[i]);
+        }
+
+*con callback:
+
+        alumnos.forEach(function(elemento, inidice){
+            console.log(elemento);
+        })
+
+>En resumen: Lo que hace el for.Each es invocar la funcion en cada elemento(este se encuentra pasado en parametro).
+>Es una funcion que no devuelve nada.
+
+
+--->MAP
+>.map se utiliza cuando quiero cambiar cada elemento de una matriz de la misma manera.
+> Toma una devolucion de llamada como unico argumento.           //devolucion de llamada: es la que se invoca dentro de una funcion.
+> A diferencia de .forEach, esta funcion retorna un array.
+
+Ejemplo del video:
+
+        var numeros = [1, 5, 10, 15]
+        var dobles = numeros.map(function(x) {             ---> Esto se convierte en un array nuevo, por eso lo pongo en una variable.
+            return x * 2
+        }) 
+        // [2, 10, 20, 30]                                 ---> Retorna ese nuevo array.
+
+(map: se llama asi porque se mapea cada objeto con una funcion y el resultado es un nuevo array)
+
+Ejemplo de la web:
+
+        const numeros = [2, 3, 4, 5];
+
+        function multiplicarPorTres(elemento) {
+            return elemento * 3;
+        }
+        const triple = numeros.map(multiplicarPorTres)
+
+        //console.log(triple) ---> [6, 9, 12, 15]
+
+
+El ejemplo de alumnos:
+
+        var alumnos = ["Mati", "Leo", "tincho", "Emi", "Jimmy"];
+
+        String.prototype.capitalize = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
+        *sin callback
+
+        var nuevoArray = []
+        for(i = 0; i < alumnos.length; i++) {
+            nuevoArray.push(alumnos[i].capitalize());
+        }
+
+        *Con callback
+
+        var nuevosAlumnos = alumnos.map(function(elemento, inidice)) {
+            return elemento.capitalize();
+        
+
+--->REDUCE
+>.reduce: ejecutará un bucle en la matriz con la intencion de reducir cada elemento en un elemento que se devuelve.
+> Como primer argumento, acepta un callback que toma dos argumentos. 1) un acumulador (resultado del metodo de reduccion hasta ahora)       2)El elemento que se encuentra actualmente.
+> Siempre debe tener una declaracion de devolucion (return).
+> .reduce toma un segundo argumento opcional, que seria el acumulador de arranque ("starting accumulator") y no se da este argumento, arranca en el primer elemento de la matriz.
+
+EJ:
+        var nums = [1, 2, 3, 4, 5, 6, 7];
+
+        *sin callback
+
+        var suma = 0;
+        for(i = 0; i < nums.length; i++){
+            suma = suma * nums[i];
+        }
+
+        *Con callback
+
+        var sumaReduce = nums.reduce(function(acumulador, elemento){
+            return acumulador * elemento;
+        }, 0);                                                      ---> "acumulador de arranque" valor con el que el acumulador va a empezar. (es opcional)
+
+        acc = 0;                                ---> el acumulador comiezan en 0
+        return 0 + 1                            ---> 0 + 1, seria donde comieza el acumulador(0) y el elemento(1), el resultado de esto lo guarda en acumulador 
+        acc = 1
+        return 1 + 2
+        acc = 3
+
+        ·Y asi sucesivamente con todos los elementos.
+
+>En resumen: ejecuta la funcion para el primer elemento y lo que se retorna, pasa a ser el acumulador de la siguiente funcion (visto en el ejemplo de arriba)
+
+
+--->FILTER
+filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.

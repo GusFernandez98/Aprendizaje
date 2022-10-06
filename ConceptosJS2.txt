@@ -51,7 +51,7 @@ AND es true solo si los dos operadores son true, el resto falso.
 OR es falso si los dos operadores son falsos, el resto es true (lo contrario a and)
 NOT da vuelta el significado (ej: true !p false)
 
-
+                             (con and)        (con Or)            (con Not)
 p           | p             | p && q        | p || q            | !p                                *Tabla de verdad.. (sale en el video)
             |               |               |                   |
 true        |true           |true           |true               |false

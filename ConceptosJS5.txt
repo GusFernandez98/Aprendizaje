@@ -1,0 +1,183 @@
+        ---> CLASS (clases)
+*Es una plantilla para la creacion de objetos de datos según un modelo predefinido. 
+*Las clases se utilizan para reprensetar entidades o conceptos, como los sustantivos
+Ej: 
+        clase                           objeto
+    --> Auto                          -->Fiat       Ford        Audi     
+    (aca se refiere a                   (aca ya se refiere a un auto en particular con sus propiedades) ---> son las instancias de clase
+    un auto en general)   
+
+
+        ---> FUNCTION CONSTRUCTORS  
+>Funcion constructora, ese nombre se debe a que esa funcion nos va a permitir construir objetos.
+>En algun lugar lo podria encontrar con el nombre "factory" haciendo mención a una fabrica de objetos.
+
+*Un constructor se va a escribir asi --> function "nombre de la clase" (){};      //El nombre de la clase siempre en mayúscula por una convencion
+
+                     function Persona (){
+                        this.firstname = "Juan";
+                        this.lastname = "Perez";
+                    }
+
+                    //En este ejemplo va a : instanciar una Persona 
+
+                    var juan = new Persona ();
+                    console.log(juan)
+
+
+*En el nombre de la clase hay una convencion (acuerdo de los programadores para escribir de cierta manera)
+*Esta convencion dice ---> Todas la funciones constructoras de clases tienen que empezar con mayúscula. 
+
+// por eso en el ejemplo "Persona" empieza con mayúscula, eso me quiere decir que no es una funcion cualquiera sino una funcion constructora. 
+
+
+---> NEW: es un keyword que proviene de java 
+>Con eso indicamos que vamos a crear un nuevo objeto de un clase especifica (le enviamos las propiedades, y eso me devuelve una instancia de la clase, osea un el nuevo objeto)
+>keyword new ---> en resumen lo que hace es "instanciar una clase"
+
+
+>Hace varias cosas detras de escena:
+1) Crea un objeto nuevo --> var objeto = {}  // un objeto vacio
+2) Invoca la funcion --> con el ej. Car: Car("Fiat", 1300, "Cronos").bind(objeto)
+·Bind --> Da un control al desarollador de cuanto va a valer "this" --> con bind, el this de la funcion Car tiene que ser objeto.
+>Con esto objeto (que es la variable) gracias al this tiene todos los valores de la funcion<
+3) Por ultimo retorna objeto --> return objeto
+
+>lo que uno ve y escribe simplemente es esto ---> var primerAuto = new Car("Fiat", 1300, "Cronos") ---> pero sucede todo lo de arriba sin que lo veamos
+>la funcion no retorna debido al keyword "new" y todo lo que hace detras de escena.
+
+
+>>> Ejemplo para entender.
+
+        function Car (marca, motor, modelo) {
+            this.marca = marca;                 //objeto.marca               
+            this.motor = motor;                 //objeto.motor         <--- Esto es lo que hace el bind(objeto) this pasa a ser objeto y tiene todos los valores de la funcion.
+            this.modelo = modelo;               //objeto.modelo
+        }
+
+        var primerAuto = new Car("Fiat", 1300, "Cronos")
+        var segundoAuto = new Car("Ford", 2000, "Focus")
+
+// si lo ejecuto quedaria asi
+        primerAuto
+            Car {marca: "Fiat", motor: 1300, modelo: "Cronos"}
+*Comienza con Car porque indica con que funcion constructora a sido construido este objeto
+>Fiat Cronos es una instancia de la clase Car<
+
+
+--->Default operator: Utiliza el operador Or "||" y sirve por si yo no le paso un valor, este va a tener un valor default.
+
+                        function Persona(nombre, apellido){
+                                this.nombre = nombre || "Juan"
+                                this.apellido = apellido || "Perez"
+                        }
+        *El valor default del ejemplo es "Juan"
+
+                        var gus = new Persona("Gustavo", "Fernandez");
+                        var ma = new Persona("Claudia", "Baigorria");
+                        var pa = new Persona("Antonio", "Fernandez");
+
+        *Si yo no llegara a pasar estos valores, la propiedad tendria el valor default
+
+
+a || b 
+
+Tabla de la veracidad
+T || T = true
+T || F = true
+F || T = true
+F || F = false
+
+Si a es true => el resultado va a ser "a"
+si a es false => el resultado va a ser "b"
+
+
+Esto se llama Shortcircuit
+>si la primer opcion es false, ni lee el resto.
+>si la primer opcion es true, lee el resto.
+T && T = true
+T && F = false
+F && T = false
+F && F = false
+
+
+---> Prototype (prototipo)
+Js lenguaje tiene un diseño basado en prototipo, esto quiere decir:
+>Todos los objetos de Js tienen un referencia a otro objeto llamado "proto"
+
+>Cada objeto que creamos en Js tiene sus propiedades, pero a su vez tiene definido un proto.
+>Cuando creo un objeto y busco la propiedad que no esta en el objeto, lo que hace Js es buscar esa propiedad en el proto. Si ya no se encuentra ahi tira un error
+Ej:
+        var lista = [1, 2, 3]
+        lista.push() 
+        
+        *Tiene como propiedad 0, 1, 2
+        *El prototipo de ese objeto lista, es un objeto que se llama array y  tiene muchas propiedades dentro (el push sale de ahi)
+        *si pongo lista. salen todas las funciones que tiene 
+
+> En resumen todos los objetos tienen un prototipo
+
+---> Compartir metodo.
+lo optimo para eso seria que la funcion se encuentre en el prototipo de los objetos, de tal forma que compartan la funcion
+Ej:
+        function Persona(nombre, apellido) {
+                this.nombre = "Juan";
+                this.apellido = "Perez";
+        }
+        Persona.prototype.getNombre = function() {              ---> Con esto todos los objetos van a tener ese prototipo.
+                return this.nombre + " " + this.apellido                   
+        }
+        var gus = new Persona("Gustavo", "Fernandez")                  ---> gus.__proto__ (el prototipo del este objeto es persona y tiene la funcion getNombre)
+        //
+        por eso
+        gus.getNombre()---> va a funcionar!!
+
+>Para compartir la funcion el keyword "this" es super importante, porque se refiere a cada objeto que voy instanciando.
+
+
+        --->OBJECT.CREATE
+>Object: Es el objeto alfa (seria como el primer objeto de js)
+>Todos los demas objetos tienen como prototype a Object
+>dentro de Object tiene un metodo llamado create: lo que hace es crear un nuevo objeto cuyo prototipo es el primer objeto que le pasamos.
+
+-->Object.create recibe un objeto como parametro y crea un nuevo objeto cuyo prototipo es el primero que le pasamos.
+Ej:
+        var Person() {
+                nombre: Default,
+                apellido: Default,
+        }
+// un objeto cualquiera
+
+        var lucy = Object.create(person); // le paso el objeto que creamos.             //Es el objeto Person que se creo primero.
+
+
+        ---> ES6 Y CLASS
+>ES6: Asi se denomina a las versiones de JavaScript, el numero indica cual es esa version. (6 seria la ultima de momento)
+Ej:
+        class Persona {
+                constructor (nombre, apellido){
+                        this.nombre = nombre.
+                        this.apellido = apellido.
+                }
+                saludar(){
+                        console.log("Hola!" + this.nombre);
+                }
+        }
+
+        var gus = new Persona("Luis", "Fernandez");
+        gus.saludar();
+
+
+>Una clase puede heredar de otra clase:
+
+        class Empleado extends Persona {                                        (clase Empleado se extiende a la clase Persona)
+                constructor (nombre, apellido, empleo, sueldo){
+                        super(nombre, apellido);                               --> Quiere decir que estoy invocando el constructor de la clase que extiendo(estoy invocando el constructor de persona)
+                        this.empleo = empleo;
+                        this.sueldo = sueldo;
+                }
+        }
+
+        var gus = new Empleado("Luis", "Fernandez", "estudiante", 50)
+
+>El metodo super permite usar el constructor de la clase de la cual estamos heredamos, en este caso la clase persona.
